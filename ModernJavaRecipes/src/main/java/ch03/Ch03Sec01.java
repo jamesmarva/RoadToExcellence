@@ -1,21 +1,27 @@
 package ch03;
 
+import javax.swing.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.LongAccumulator;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 /**
- * <功能描述><br>
+ *  从数据源创建
  *
  * @author Brilliant James Jamesmarva1993@gmail.com 2020-06-27 18:42
  **/
 public class Ch03Sec01 {
 
     public static void main(String[] args) {
-        createStreamByIterate();
+//        createStreamByIterate();
+//        generateSteam();
+        createStreamFromCollection();
     }
     private static void createStreamOf() {
         try {
@@ -41,5 +47,39 @@ public class Ch03Sec01 {
         Stream.iterate(LocalDate.now(), ld -> ld.plusDays(1))
                 .limit(10)
                 .forEach(System.out::println);
+    }
+
+    private static void generateSteam() {
+        Stream.generate(Math::random)
+            .limit(10)
+            .forEach(System.out::println);
+    }
+
+
+    /**
+     * 从几何中创建
+     */
+    private static void createStreamFromCollection() {
+        List<String> list = Arrays.asList("Greg", "Marcia", "Peter");
+        String name = list.stream().collect(Collectors.joining(", "));
+        System.out.println(name);
+    }
+
+
+    /**
+     * IntStram
+     * LongStream
+     * FloatStream
+     */
+    public static void createDataStream() {
+        List<Integer> ints = IntStream.range(10, 15)
+                                        .boxed()
+                                        .collect(Collectors.toList());
+        System.out.println("ints: " + ints);
+
+        List<Long> longs = LongStream.rangeClosed(10, 15)
+                                    .boxed()
+                                    .collect(Collectors.toList());
+        System.out.println("longs: "+ longs);
     }
 }
