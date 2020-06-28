@@ -5,7 +5,9 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  *
@@ -15,11 +17,16 @@ import java.util.stream.IntStream;
  **/
 public class Ch03Sec03 {
 
-
     public static void main(String[] args) {
         reduceDemo01();
         addPowTwoWrong();
         addPowTwoRight();
+        usingBinaryOperationToReduction();
+        intStreamDemo01();
+        stringConcatInReduce();
+        System.out.println("-------------------------------");
+        stringConcatByCollect();
+        stringConcatUseJoining();
     }
 
 
@@ -62,4 +69,57 @@ public class Ch03Sec03 {
         int doubleSum = IntStream.rangeClosed(1, 10).reduce(0, (x, y) -> x + 2 * y);
         System.out.println("oubleSum: " + doubleSum);
     }
+
+    /**
+     * 利而二元运算执行归约操作
+     */
+    private static void usingBinaryOperationToReduction() {
+        int sum = Stream.of(1, 2, 4, 5, 5, 6, 7, 7, 8)
+                        .reduce(0, Integer::sum);
+        System.out.println(sum);
+    }
+
+    private static void intStreamDemo01() {
+        int sum = IntStream.of(1, 2, 3, 4, 5,6,6,777, 8).sum();
+        System.out.println(sum);
+        OptionalInt max = IntStream.of(1, 2, 3, 4, 5,6,6,777, 8).max();
+
+        System.out.println(max.getAsInt());
+    }
+
+    /**
+     *
+     * 效率不好，因为字符串拼接会频繁创建和销毁对象
+     */
+    private static void stringConcatInReduce() {
+        String s = Stream.of("this", "is", "a", "list").reduce("",String::concat);
+        System.out.println(s);
+
+    }
+
+    private static void stringConcatByCollect() {
+        String s = Stream.of("this", "is", "a", "list")
+                .collect(() -> new StringBuilder(),
+                        (sb, str) -> sb.append(str),
+                        (sb1, sb2) -> sb1.append(sb2))
+                .toString();
+        System.out.println(s);
+    }
+
+    private static void stringConcatCollectSimplify() {
+        String s = Stream.of("this", "is", "a", "list")
+                        .collect(StringBuilder::new,
+                                StringBuilder::append,
+                                StringBuilder::append)
+                        .toString();
+        System.out.println("s: " + s);
+    }
+
+    private static void stringConcatUseJoining() {
+        String s = Stream.of("this", "is", "a", "list")
+                        .collect(Collectors.joining(" "));
+        System.out.println("s: " + s);
+    }
+
+
 }
