@@ -1,10 +1,7 @@
 package ch03;
 
 import java.io.PipedReader;
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.OptionalDouble;
-import java.util.OptionalInt;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -120,6 +117,40 @@ public class Ch03Sec03 {
                         .collect(Collectors.joining(" "));
         System.out.println("s: " + s);
     }
+    private static void addBookToMap() {
+        List<Book> books = new ArrayList<>();
+        HashMap<Integer, Book> bookMap = books.stream()
+                .reduce(new HashMap<Integer, Book>(),
+                        (map, book) -> {
+                            map.put(book.getId(), book);
+                            return map;
+                        },
+                        (map1, map2) -> {
+                            map1.putAll(map2);
+                            return map1;
+                        });
+    }
 
+
+    private class Book {
+        private Integer id;
+        private String title;
+
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+    }
 
 }

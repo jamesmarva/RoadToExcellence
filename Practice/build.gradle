@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'org.example'
+group 'com.hungry'
 version '1.0-SNAPSHOT'
 
 tasks.withType(JavaCompile) {
@@ -15,4 +15,6 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'com.google.guava', name: 'guava', version: '23.5-jre'
+
 }
