@@ -28,7 +28,7 @@ public class Ch03Sec07 {
     }
 
     /**
-     *
+     * 获取流中的元素的个数
      */
     public static void countByMap() {
         long count = Stream.of(1, 2, 3, 4, 1,1,1,1,1,1)
