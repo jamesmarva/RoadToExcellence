@@ -1,3 +1,9 @@
 /提交说明.md
 /ModernJavaRecipes/build/
 /ModernJavaRecipes/out/production/classes/ch03/
+/.idea/
+/.gradle/
+/gradle
+/gradlew
+/gradlew.bat
+/Practice/out

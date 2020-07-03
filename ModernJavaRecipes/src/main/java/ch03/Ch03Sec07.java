@@ -1,5 +1,6 @@
 package ch03;
 
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -12,7 +13,9 @@ public class Ch03Sec07 {
 
 
     public static void main(String[] args) {
-
+        countOfStream();
+        countByMap();
+        countByCollect();
     }
 
     /**
@@ -32,5 +35,12 @@ public class Ch03Sec07 {
                 .mapToLong(n -> 1L)
                 .sum();
         System.out.println("count: " + count);
+    }
+
+    public static void countByCollect() {
+        long count = Stream.of(1, 2, 3, 4, 1,1,1,1,1,2, 3, 434, 1)
+                .collect(Collectors.counting());
+        System.out.println("count: " + count);
+
     }
 }
