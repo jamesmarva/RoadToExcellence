@@ -7,7 +7,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * 
+ * 对映射排序
+ * 用户希望根据 键或者值 对map进行排序。
  *
  * @author Brilliant James Jamesmarva1993@gmail.com 2020-07-16 01:34
  **/
