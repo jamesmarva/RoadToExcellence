@@ -2,4 +2,5 @@ rootProject.name = 'RoadToExcellence'
 include 'Practice'
 include 'ModernJavaRecipes'
 include 'Netty'
+include 'MasteringLambda'
 
