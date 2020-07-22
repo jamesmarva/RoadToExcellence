@@ -3,4 +3,5 @@ include 'Practice'
 include 'ModernJavaRecipes'
 include 'Netty'
 include 'MasteringLambda'
+include 'Java8InAction'
 
