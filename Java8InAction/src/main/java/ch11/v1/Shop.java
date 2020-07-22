@@ -37,6 +37,10 @@ public class Shop {
         return future;
     }
 
+    public Future<Double> getPriceAsyncWithFactory(String product) {
+       return CompletableFuture.supplyAsync(() -> calculatePrice(product));
+    }
+
     private double calculatePrice(String product) {
         delay();
         return random.nextDouble() * product.charAt(0) + product.charAt(1);
