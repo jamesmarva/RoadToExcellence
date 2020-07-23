@@ -7,7 +7,7 @@ import ch11.v2.ShopV2;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 /**
@@ -46,4 +46,43 @@ public class BestPriceFinder {
         return prices;
     }
 
+
+    /**
+     * 用 Java 7 来实现上面这个并行行活动
+     * @param product
+     * @return
+     */
+    public List<String> findPricesInUSDJava7(String product) {
+        ExecutorService executor = Executors.newCachedThreadPool();
+        List<Future<Double>> priceFutures = new ArrayList<>();
+        for (ShopV2 item : shops) {
+            final Future<Double> futureRate = executor.submit(new Callable<Double>() {
+                @Override
+                public Double call() throws Exception {
+                    return ExchangeService.getRate(ExchangeService.Money.EUR, ExchangeService.Money.USD);
+                }
+            });
+            Future<Double> futurePriceInUSD = executor.submit(new Callable<Double>() {
+                @Override
+                public Double call() throws Exception {
+                    try {
+                        double priceInEUR = item.getPrice(product);
+                        return priceInEUR * futureRate.get();
+                    } catch (InterruptedException | ExecutionException e) {
+                        throw new RuntimeException(e.getMessage(), e);
+                    }
+                }
+            });
+            priceFutures.add(futurePriceInUSD);
+        }
+        List<String> prices = new ArrayList<>();
+        for (Future<Double> item : priceFutures) {
+            try {
+                prices.add(" price is " + item.get());
+            } catch (ExecutionException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return prices;
+    }
 }
