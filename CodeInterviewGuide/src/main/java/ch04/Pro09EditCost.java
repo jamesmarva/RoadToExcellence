@@ -143,5 +143,42 @@ public class Pro09EditCost {
         return dp[l1][l2];
     }
 
+    /**
+     *
+     * @return
+     */
+    public int solution3(String s1, String s2) {
+        if (null == s1 || null == s2) {
+            throw new IllegalArgumentException("s1 or s2 is not allow null.");
+        } else if (s1.length() == 0 && s2.length() != 0) {
+            return s2.length();
+        } else if (s1.length() != 0 && s2.length() == 0) {
+            return s1.length();
+        }
+
+        char[] c1 = s1.toCharArray(), c2 = s2.toCharArray();
+        char[] longer = c1.length >= c2.length ? c1 : c2;
+        char[] shorter = c1.length < c2.length ? c1 : c2;
+        int[] dp = new int[shorter.length + 1];
+        for (int i = 1, l = shorter.length; i <= l; i++) {
+            dp[i] = i;
+        }
+        for (int i = 1, l1 = longer.length; i <= l1; ++i) {
+            int pre = dp[0];
+            dp[0] = i;
+            for (int j = 1, l2 = shorter.length; j <= l2; ++j) {
+                int tmp = dp[j];
+                if (longer[i - 1] == shorter[j - 1]) {
+                    dp[j] = pre;
+                } else {
+                    dp[j] = pre + i;
+                }
+                dp[j] = Math.min(dp[j], dp[j - 1] + 1);
+                dp[j] = Math.min(dp[j], tmp + 1);
+                pre = tmp;
+            }
+        }
+        return dp[shorter.length];
+    }
 
 }
