@@ -7,3 +7,14 @@
 /gradlew
 /gradlew.bat
 /Practice/out
+*.class
+*.prefs
+Java8InAction/.project
+MasteringLambda/.project
+ModernJavaRecipes/.classpath
+ModernJavaRecipes/.project
+Practice/.classpath
+Practice/.project
+Netty/.project
+Netty/.classpath
+.project
