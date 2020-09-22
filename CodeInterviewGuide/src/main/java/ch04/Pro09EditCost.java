@@ -70,33 +70,34 @@ public class Pro09EditCost {
             return s1.length() * deleteCost;
         }
 
-        int l1 = s1.length();
-        int l2 = s2.length();
-        char[] c1 = s1.toCharArray();
-        char[] c2 = s2.toCharArray();
-
-        int[][] dp = new int[l1 + 1][l2 + 1];
-        for (int i = 1; i <= l1; i++) {
-            dp[0][i] = i * insertCost;
+        char[] c1 = s1.toCharArray(), c2 = s2.toCharArray();
+        char[] longer = c1.length >= c2.length ? c1 : c2;
+        char[] shorter = c1.length < c2.length ? c1 : c2;
+        if (c1.length < c2.length) {
+            int tmp = insertCost;
+            insertCost = deleteCost;
+            deleteCost = tmp;
         }
-
-        for (int i = 1; i <= l2; i++){
-            dp[i][0] = i * deleteCost;
+        int[] dp = new int[shorter.length + 1];
+        for (int i = 1, l = shorter.length; i <= l; i++) {
+            dp[i] = i * insertCost;
         }
-
-        for (int i = 1; i <= l1; i++) {
-            for (int j = 1; j <= l2; j++) {
-                int tmp1;
-                if (c1[i - 1] == c2[j - 1]) {
-                    tmp1 = dp[i - 1][j - 1];
+        for (int i = 1, l1 = longer.length; i <= l1; ++i) {
+            int pre = dp[0];
+            dp[0] = deleteCost * i;
+            for (int j = 1, l2 = shorter.length; j <= l2; ++j) {
+                int tmp = dp[j];
+                if (longer[i - 1] == shorter[j - 1]) {
+                    dp[j] = pre;
                 } else {
-                    tmp1 = dp[i - 1][j - 1] + replaceCost;
+                    dp[j] = pre + replaceCost;
                 }
-                int tmp2 = Math.min(dp[i][j - 1] + deleteCost, dp[i - 1][j] + insertCost);
-                dp[i][j] = Math.min(tmp1, tmp2);
+                dp[j] = Math.min(dp[j], dp[j - 1] + insertCost);
+                dp[j] = Math.min(dp[j], tmp + deleteCost);
+                pre = tmp;
             }
         }
-        return dp[l1][l2];
+        return dp[shorter.length];
     }
 
     /**
