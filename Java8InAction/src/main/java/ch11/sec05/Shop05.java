@@ -8,7 +8,7 @@ import static ch11.Util.delay;
 import static ch11.Util.format;
 
 /**
- * <功能描述><br>
+ *
  *
  * @author Brilliant James Jamesmarva1993@gmail.com 2020-07-26 22:08
  **/
