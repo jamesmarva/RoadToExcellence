@@ -1,4 +1,4 @@
-package im.juejin.vx.ch02;
+package im.juejin.vx.ch01;
 
 import java.io.IOException;
 import java.io.InputStream;
