@@ -18,3 +18,4 @@ Practice/.project
 Netty/.project
 Netty/.classpath
 .project
+*.kotlin_module
