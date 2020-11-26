@@ -19,3 +19,5 @@ Netty/.project
 Netty/.classpath
 .project
 *.kotlin_module
+.classpath
+
