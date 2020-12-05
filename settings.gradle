@@ -6,4 +6,5 @@ include 'MasteringLambda'
 include 'Java8InAction'
 include 'CodeInterviewGuide'
 include 'JavaReedSolomon'
+include 'TheZenOfDesignPatternsSecondEidtion'
 
