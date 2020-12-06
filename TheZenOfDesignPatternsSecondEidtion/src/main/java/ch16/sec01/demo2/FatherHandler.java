@@ -1,4 +1,4 @@
-package ch16.sec02;
+package ch16.sec01.demo2;
 
 /**
  *
@@ -19,6 +19,5 @@ public class FatherHandler extends Handler {
         System.out.println("\n----------- daughter request father. -----------");
         System.out.println(women.request());
         System.out.println("Father's response is agree");
-
     }
 }

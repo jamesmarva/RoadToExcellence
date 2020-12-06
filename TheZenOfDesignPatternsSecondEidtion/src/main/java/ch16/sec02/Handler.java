@@ -1,52 +1,41 @@
 package ch16.sec02;
 
 /**
- *
- * @author 王涵威
- * @date 20.12.5 20:50
- */
+ * the template handler
+ * @author Brilliant James Jamesmarva1993@gmail.com 2020-12-06 12:00
+ **/
 public abstract class Handler {
 
-    public static final int FATHER_LEVEL = 1;
+    private Handler nextHandler;
 
-    public static final int HUSBAND_LEVEL = 2;
-
-    public static final int SON_LEVEL = 3;
-
-
-    private int level = 0;
-
-    private Handler next;
-
-    public Handler(int level) {
-        this.level = level;
-    }
-
-    /**
-     *
-     * @param women
-     */
-    public final void handleMessage(IWomen women) {
-        if (women.getState() == this.level) {
-            this.response(women);
+    public final Response handleMessage(Request request) {
+        Response response = null;
+        if (this.getHandlerLevel().equals(request.getRequestLevel())) {
+            response = echo(request);
         } else {
-            if (this.next != null) {
-                //
-                this.next.handleMessage(women);
+            if (this.nextHandler != null) {
+                this.nextHandler.handleMessage(request);
             } else {
-                System.out.println("--- no next handler. --- ");
+                // no handler handle it,
             }
         }
+        return response;
     }
 
-    public void setNext(Handler handler) {
-        this.next = handler;
+    public void setNextHandler(Handler nextHandler) {
+        this.nextHandler =nextHandler;
     }
 
     /**
-     * response the women
-     * @param women be response.
+     * get the level of handler.
+     * @return
      */
-    protected abstract void response(IWomen women);
+    protected abstract Level getHandlerLevel();
 
+    /**
+     * only deal the request.
+     * @param request
+     * @return
+     */
+    protected abstract Response echo(Request request);
 }

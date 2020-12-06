@@ -1,4 +1,4 @@
-package ch16.sec01;
+package ch16.sec01.demo1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.Random;
  * @author 王涵威
  * @date 20.12.5 19:59
  */
-public class Client {
+public class Sec01Demo1Client {
 
     public static void main(String[] args) {
         //

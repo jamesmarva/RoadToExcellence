@@ -1,4 +1,4 @@
-package ch16.sec02;
+package ch16.sec01.demo2;
 
 /**
  *
@@ -29,7 +29,6 @@ public class Women implements IWomen {
         }
     }
 
-
     @Override
     public int getState() {
         return this.state;
@@ -47,6 +46,5 @@ public class Women implements IWomen {
         public static final int MARRIED = 2;
 
         public static final int HUSBAND_DEAD = 3;
-
     }
 }

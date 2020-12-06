@@ -1,4 +1,4 @@
-package ch16.sec01;
+package ch16.sec01.demo1;
 
 /**
  * 丈夫类

@@ -1,4 +1,4 @@
-package ch16.sec01;
+package ch16.sec01.demo1;
 
 /**
  * 有处理权的人的接口
