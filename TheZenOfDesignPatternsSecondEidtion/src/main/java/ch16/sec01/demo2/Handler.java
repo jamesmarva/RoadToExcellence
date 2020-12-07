@@ -47,5 +47,4 @@ public abstract class Handler {
      * @param women be response.
      */
     protected abstract void response(IWomen women);
-
 }

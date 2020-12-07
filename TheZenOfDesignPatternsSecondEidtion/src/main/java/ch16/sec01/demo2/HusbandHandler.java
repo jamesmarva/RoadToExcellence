@@ -13,7 +13,6 @@ public class HusbandHandler extends Handler {
         super(Handler.HUSBAND_LEVEL);
     }
 
-
     @Override
     protected void response(IWomen women) {
         System.out.println("\n------ wife request husband ------");

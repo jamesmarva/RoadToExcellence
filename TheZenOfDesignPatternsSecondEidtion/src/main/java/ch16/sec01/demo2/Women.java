@@ -7,7 +7,6 @@ package ch16.sec01.demo2;
  */
 public class Women implements IWomen {
 
-
     private final int state;
 
     private String requestMessage;
