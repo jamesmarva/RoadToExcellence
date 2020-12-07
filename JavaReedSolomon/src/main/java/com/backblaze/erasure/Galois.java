@@ -1,6 +1,10 @@
 package com.backblaze.erasure;
 
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * 8 bit Galois Field
@@ -130,4 +134,123 @@ public final class Galois {
             27,   54,  108,  -40,  -83,   71, -114
     };
 
+//    public static byte[][] MULTIPLICATIO_TABLE =
+
+
+
+    public static byte add(byte a, byte b) {
+        return (byte) (a ^ b);
+    }
+
+    public static byte subtract(byte a, byte b) {
+        return (byte) (a ^ b);
+    }
+
+    public static byte multiply(byte a, byte b) {
+        if (a == 0 || b == 0) {
+            return 0;
+        } else {
+            int logA = LOG_TABLE[a & 0xFF];
+            int logB = LOG_TABLE[b & 0xFF];
+            int logResult = logA + logB;
+            return EXP_TABLE[logResult];
+
+        }
+    }
+
+    /**
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+    public static byte divide(byte a, byte b) {
+        if (a == 0) {
+            return 0;
+        }
+        if (b == 0) {
+            throw new IllegalArgumentException("Argument 'divider' is 0");
+        }
+        int logA = LOG_TABLE[a & 0xFF];
+        int logB = LOG_TABLE[b & 0xFF];
+        int logResult = logA - logB;
+        if (logResult < 0) {
+            logResult += 255;
+        }
+        return EXP_TABLE[logResult];
+    }
+
+    /**
+     *
+     * @param a
+     * @param n
+     * @return
+     */
+    public static byte exp(byte a, int n) {
+        if (n == 0) {
+            return 1;
+        } else if (a == 0) {
+            return 0;
+        } else {
+            int logA = LOG_TABLE[a & 0xFF];
+            int logReuslt = logA * n;
+            while (255 <= logReuslt) {
+                logReuslt -= 255;
+            }
+            return EXP_TABLE[logReuslt];
+        }
+    }
+
+    public static short[] generateLogTable(int polynomial) {
+        short[] result = new short[FIELD_SIZE];
+        for (int i = 0; i < FIELD_SIZE; i++) {
+            // -1 means "not set"
+            result[i] = -1;
+        }
+        int b = 1;
+        for (int log = 0; log < FIELD_SIZE - 1; log++) {
+            if (result[b] != -1) {
+                throw new RuntimeException("BUG: duplicate logarithm (bad polynomial?");
+            }
+            result[b] = (short) log;
+            b = (b << 1);
+            if (FIELD_SIZE <= b) {
+                b = ((b - FIELD_SIZE) ^ polynomial);
+            }
+        }
+        return result;
+    }
+
+    public static byte[] generateExpTable(short[] logTable) {
+        final byte[] result = new byte[FIELD_SIZE * 2 - 2];
+        for (int i = 1;i < FIELD_SIZE; i++) {
+            int log = logTable[i];
+            result[log] = (byte) i;
+            result[log + FIELD_SIZE - 1] = (byte) i;
+        }
+        return result;
+    }
+
+    public static byte[][] generateMultiplicationTable() {
+        byte[][] result = new byte[FIELD_SIZE][FIELD_SIZE];
+        for (int r = 0; r < FIELD_SIZE; r++) {
+            for (int c = 0; c < FIELD_SIZE; c++) {
+                result[r][c] = multiply((byte) r, (byte) c);
+            }
+        }
+        return result;
+    }
+
+    public static Integer[] allPossiablePolynomials() {
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < FIELD_SIZE; i++) {
+            try {
+                generateLogTable(i);
+                result.add(i);
+            } catch (RuntimeException e) {
+
+            }
+        }
+        return result.toArray(new Integer[result.size()]);
+    }
 }

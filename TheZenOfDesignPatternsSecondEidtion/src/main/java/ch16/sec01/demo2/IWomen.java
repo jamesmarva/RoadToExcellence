@@ -1,4 +1,4 @@
-package ch16.sec02;
+package ch16.sec01.demo2;
 
 /**
  * women in old years.
@@ -6,9 +6,6 @@ package ch16.sec02;
  * @date 20.12.5 20:36
  */
 public interface IWomen {
-
-
-
 
     /**
      * get State of women

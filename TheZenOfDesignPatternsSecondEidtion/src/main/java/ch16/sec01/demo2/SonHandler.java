@@ -1,4 +1,4 @@
-package ch16.sec02;
+package ch16.sec01.demo2;
 
 /**
  * 〈功能概述〉<br>

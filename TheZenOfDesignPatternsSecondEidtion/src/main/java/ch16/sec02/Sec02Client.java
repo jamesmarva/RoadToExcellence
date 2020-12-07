@@ -1,36 +1,22 @@
 package ch16.sec02;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 /**
- * 〈功能概述〉<br>
+ * <功能描述><br>
  *
- * @author 王涵威
- * @date 20.12.5 21:50
- */
+ * @author Brilliant James Jamesmarva1993@gmail.com 2020-12-06 12:12
+ **/
 public class Sec02Client {
 
-
     public static void main(String[] args) {
-        Random random = new Random();
+        Handler handler1 = new ConcreteHandler1();
 
-        List<IWomen> list = new ArrayList<>();
+        Handler handler2 = new ConcreteHandler2();
 
-        for (int i = 0; i < 5; i++) {
-            list.add(new Women(1 + random.nextInt(3), "Shopping"));
-        }
+        Handler handler3 = new ConcreteHandler3();
 
-        Handler father = new FatherHandler();
-        Handler husband = new HusbandHandler();
-        Handler son = new SonHandler();
-
-        father.setNext(husband);
-        husband.setNext(son);
-
-        for (IWomen women : list) {
-            father.handleMessage(women);
-        }
+        handler1.setNextHandler(handler2);
+        handler2.setNextHandler(handler3);
+        Response response = handler1.handleMessage(new Request());
     }
+
 }

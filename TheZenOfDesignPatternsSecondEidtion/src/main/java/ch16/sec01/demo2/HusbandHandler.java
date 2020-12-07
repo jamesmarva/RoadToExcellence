@@ -1,4 +1,4 @@
-package ch16.sec02;
+package ch16.sec01.demo2;
 
 
 /**
@@ -12,7 +12,6 @@ public class HusbandHandler extends Handler {
     public HusbandHandler() {
         super(Handler.HUSBAND_LEVEL);
     }
-
 
     @Override
     protected void response(IWomen women) {
