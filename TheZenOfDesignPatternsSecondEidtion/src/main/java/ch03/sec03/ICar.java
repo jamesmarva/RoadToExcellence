@@ -5,5 +5,10 @@ package ch03.sec03;
  *
  * @author Brilliant James Jamesmarva1993@gmail.com 2020-12-08 09:26
  **/
-public class ICar {
+public interface ICar {
+
+    /**
+     * 汽车泡起来了！！
+     */
+    void run();
 }
