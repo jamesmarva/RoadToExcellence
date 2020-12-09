@@ -5,7 +5,7 @@ package ch03.sec02;
  *
  * @author Brilliant James Jamesmarva1993@gmail.com 2020-12-08 09:02
  **/
-public class Sec03Client {
+public class Sec02Client {
 
     public static void main(String[] args) {
 

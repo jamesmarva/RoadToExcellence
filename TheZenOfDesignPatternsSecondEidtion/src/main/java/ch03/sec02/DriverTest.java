@@ -1,6 +1,6 @@
 package ch03.sec02;
 
-import org.jmock.Mockery;
+//import org.jmock.Mockery;
 
 /**
  *
@@ -8,14 +8,14 @@ import org.jmock.Mockery;
  **/
 public class DriverTest {
 
-    Mockery context = new Junit4Mockery();
-
-    public void testDriver() {
-        final ICar car = new context.mock(ICar.class);
-        IDriver driver = new Driver();
-        context.checking(new Expectations() {{
-            oneOf(car).run();
-        }});
-        driver.drive(car);
-    }
+//    Mockery context = new Junit4Mockery();
+//
+//    public void testDriver() {
+//        final ICar car = new context.mock(ICar.class);
+//        IDriver driver = new Driver();
+//        context.checking(new Expectations() {{
+//            oneOf(car).run();
+//        }});
+//        driver.drive(car);
+//    }
 }

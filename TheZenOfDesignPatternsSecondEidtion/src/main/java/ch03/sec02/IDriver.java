@@ -1,4 +1,4 @@
-package ch03;
+package ch03.sec02;
 
 /**
  * 〈功能概述〉<br>
