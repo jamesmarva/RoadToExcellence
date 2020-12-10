@@ -4,7 +4,6 @@ import ch03.sec03.ICar;
 import ch03.sec03.IDriver;
 
 /**
- * 〈功能概述〉<br>
  *
  * @author 王涵威
  * @date 20.12.8 22:03
