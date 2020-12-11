@@ -1,15 +1,13 @@
-package ch15.sec01.improvement;
+package ch15.sec04;
 
 import ch15.sec01.CodeGroup;
 import ch15.sec01.PageGroup;
 import ch15.sec01.RequirementGroup;
 
 /**
- * 代码清单15-7 抽象命令类
  *
- * @author 王涵威
- * @date 20.12.10 22:21
- */
+ * @author Brilliant James Jamesmarva1993@gmail.com 2020-12-11 08:31
+ **/
 public abstract class Command {
 
     protected RequirementGroup rg = new RequirementGroup();
@@ -19,7 +17,7 @@ public abstract class Command {
     protected CodeGroup cg = new CodeGroup();
 
     /**
-     * 执行命令
+     * execute
      */
     public abstract void execute();
 }
