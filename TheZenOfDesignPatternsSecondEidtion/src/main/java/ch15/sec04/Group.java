@@ -6,7 +6,12 @@ package ch15.sec04;
  **/
 public abstract class Group {
 
+    /**
+     * find it
+     */
     public abstract void find();
+
+    public abstract void add();
 
     public abstract void delete();
 

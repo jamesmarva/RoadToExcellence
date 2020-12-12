@@ -13,6 +13,11 @@ public class PageGroup extends Group {
     }
 
     @Override
+    public void add() {
+
+    }
+
+    @Override
     public void delete() {
 
     }

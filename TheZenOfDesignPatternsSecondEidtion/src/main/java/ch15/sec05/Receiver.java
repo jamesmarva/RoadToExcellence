@@ -1,4 +1,4 @@
-package ch15.sec04.perfect;
+package ch15.sec05;
 
 /**
  * 〈功能概述〉<br>

@@ -1,6 +1,4 @@
-package ch15.sec04.perfect;
-
-import ch15.sec02.Receiver;
+package ch15.sec05;
 
 /**
  * 〈功能概述〉<br>
@@ -16,7 +14,10 @@ public abstract class Command {
         this.receiver = receiver;
     }
 
-    public abstract void exeecute();
+    /**
+     * execute the command
+     */
+    public abstract void execute();
 }
 
 
