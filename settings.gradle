@@ -8,4 +8,5 @@ include 'CodeInterviewGuide'
 include 'JavaReedSolomon'
 include 'TheZenOfDesignPatternsSecondEidtion'
 include 'WebSecurityDemo0'
+include 'VestaIdGenerator'
 
